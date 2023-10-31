@@ -39,7 +39,7 @@ public class LoginUserServiceImpl extends AbstractService implements LoginUserSe
     @Inject private SettingsDiscoverer settingsDiscoverer;
 
     public User login(String username, String password, Settings settings) throws HupaException, MessagingException {
-        logger.debug("Login user: " + username + " " + password);
+        logger.info("Login user: " + username + " " + password);
         try {
             HttpSession httpSession = httpSessionProvider.get();
             SessionUtils.cleanSessionAttributes(httpSession);
@@ -50,7 +50,7 @@ public class LoginUserServiceImpl extends AbstractService implements LoginUserSe
             cache.get(user);
             user.setAuthenticated(true);
             httpSession.setAttribute(SConsts.USER_SESS_ATTR, user);
-            logger.debug("Logged user: " + username);
+            logger.info("Logged user: " + username);
             settingsDiscoverer.setValidSettings(user);
             return user;
         } catch (Exception e) {

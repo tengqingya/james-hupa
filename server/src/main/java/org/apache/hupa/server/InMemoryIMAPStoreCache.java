@@ -116,6 +116,7 @@ public class InMemoryIMAPStoreCache implements IMAPStoreCache {
         }
 
         if (cstore.getStore().isConnected() == false) {
+            logger.info(String.format("=======%s %s %s %s",settings.getImapServer(),settings.getImapPort(),id,password));
             cstore.getStore().connect(settings.getImapServer(), settings.getImapPort(), id, password);
         }
 
